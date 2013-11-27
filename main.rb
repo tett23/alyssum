@@ -1,5 +1,11 @@
 require 'Qt'
 
+require 'bundler'
+Bundler.require
+require 'active_support/core_ext'
+
+require './lib/application_config'
+require './lib/project'
 require './lib/text_edit'
 require './lib/sidebar'
 
@@ -17,6 +23,8 @@ class Qt::Variant
   end
 end
 
+ApplicationConfig.instance
+
 class Window < Qt::Widget
   def initialize
     super
@@ -24,24 +32,14 @@ class Window < Qt::Widget
     @text_edit = TextEdit.new
     @sidebar = Sidebar.new
 
+    Qt::Object.connect(@sidebar.file_view, SIGNAL('clicked(const QModelIndex &)'), @sidebar, SLOT('clicked_wrap(const QModelIndex &)'))
+    Qt::Object.connect(@sidebar, SIGNAL('send_fileview_clicked_signal(QString)'), @text_edit, SLOT('view_file(QString)'))
+
     layout = Qt::HBoxLayout.new do |l|
-      l.add_layout @sidebar.layout
-      l.add_layout @text_edit.layout
+      l.add_layout @sidebar.layout, 1
+      l.add_layout @text_edit.layout, 2
     end
     setLayout layout
-
-=begin
-    setLayout Qt::VBoxLayout.new { |l|
-      l.add_widget Qt::TextEdit.new
-
-      q_button = Qt::PushButton.new 'quit' do
-        connect SIGNAL(:clicked) do
-          Qt::Application.instance.quit()
-        end
-      end
-      l.add_widget q_button
-    }
-=end
   end
 end
 

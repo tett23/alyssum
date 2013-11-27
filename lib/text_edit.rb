@@ -10,6 +10,15 @@ class TextArea < Qt::TextEdit
 
     emit count_characters(self.plainText.size)
   end
+
+  def open_file(path)
+    raise '' unless File.exists?(path)
+    return if File.directory?(path)
+    text = open(path).read
+
+    self.text = text
+    emit count_characters(self.plainText.size)
+  end
 end
 
 class CharCounter < Qt::Label
@@ -25,6 +34,8 @@ class CharCounter < Qt::Label
 end
 
 class TextEdit < Qt::Object
+  slots 'view_file(const QString &)'
+
   def initialize
     super
 
@@ -45,5 +56,9 @@ class TextEdit < Qt::Object
       end
       l.add_layout char_count_widget
     end
+  end
+
+  def view_file(path)
+    @textarea.open_file(path)
   end
 end
