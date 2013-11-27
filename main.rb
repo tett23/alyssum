@@ -1,6 +1,7 @@
 require 'Qt'
 
 require './lib/text_edit'
+require './lib/sidebar'
 
 #Qt.debug_level = Qt::DebugLevel::High
 
@@ -21,8 +22,14 @@ class Window < Qt::Widget
     super
 
     @text_edit = TextEdit.new
+    @sidebar = Sidebar.new
 
-    setLayout @text_edit.layout
+    layout = Qt::HBoxLayout.new do |l|
+      l.add_layout @sidebar.layout
+      l.add_layout @text_edit.layout
+    end
+    setLayout layout
+
 =begin
     setLayout Qt::VBoxLayout.new { |l|
       l.add_widget Qt::TextEdit.new
@@ -49,16 +56,6 @@ class MainWindow < Qt::MainWindow
     resize(500, 300)
 
     setCentralWidget(@windows.first)
-  end
-end
-
-class Sidebar
-  def initialize
-    super
-
-    setLayout Qt::VBoxLayout.new {
-
-    }
   end
 end
 
