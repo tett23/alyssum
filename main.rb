@@ -33,7 +33,7 @@ class Window < Qt::Widget
     @sidebar = Sidebar.new
 
     Qt::Object.connect(@sidebar.file_view, SIGNAL('clicked(const QModelIndex &)'), @sidebar, SLOT('clicked_wrap(const QModelIndex &)'))
-    Qt::Object.connect(@sidebar, SIGNAL('send_fileview_clicked_signal(QString)'), @text_edit, SLOT('view_file(QString)'))
+    Qt::Object.connect(@sidebar, SIGNAL('send_fileview_clicked_signal(const QString &)'), @text_edit, SLOT('view_file(const QString &)'))
 
     layout = Qt::HBoxLayout.new do |l|
       l.add_layout @sidebar.layout, 1
