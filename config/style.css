@@ -33,6 +33,10 @@ QWidget:focus {
   max-width: 150px;
 }
 
+#annotation {
+  background-color: #666;
+}
+
 QMenuBar {
   background-color: #555;
 }

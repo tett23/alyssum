@@ -51,33 +51,47 @@ class TextEdit < Qt::Object
     @textarea = TextArea.new
     @line_numbers = LineNumbers.new
     @char_counter = CharCounter.new
+    @annotation = Annotation.new
     Qt::Object.connect(@textarea, SIGNAL('count_characters(int)'), @char_counter, SLOT('update_count(int)'))
     @textarea.emit @textarea.count_characters(0)
   end
 
   def layout
-    layout = Qt::VBoxLayout.new do |l|
-      text_area = Qt::HBoxLayout.new do |t|
-        t.add_widget(@line_numbers)
-        t.add_widget(@textarea)
+    layout = Qt::VBoxLayout.new do |layout|
+      annotation = Qt::HBoxLayout.new do |l|
+        l.add_widget(@annotation)
       end
 
-      char_count_widget = Qt::HBoxLayout.new do |char_count_layout|
-        char_count_layout.add_stretch 1
-        char_count_layout.add_widget @char_counter
-        char_count_layout.add_stretch 1
+      text_area = Qt::HBoxLayout.new do |l|
+        l.add_widget(@line_numbers)
+        l.add_widget(@textarea)
       end
 
-      l.add_layout text_area
-      l.add_layout char_count_widget
+      char_count_widget = Qt::HBoxLayout.new do |l|
+        l.add_stretch 1
+        l.add_widget @char_counter
+        l.add_stretch 1
+      end
+
+      main_area = Qt::VBoxLayout.new do |l|
+        l.add_layout text_area
+        l.add_layout char_count_widget
+      end
+
+      l = Qt::HBoxLayout.new { |l|
+        l.add_layout main_area
+        l.add_layout annotation
+      }
+      layout.add_layout l
+
+      layout
     end
-
-    @line_numbers.resize(20, @line_numbers.height())
 
     layout
   end
 
   def view_file(body_id)
     @textarea.open_file(body_id)
+    @annotation.open_file(body_id)
   end
 end
