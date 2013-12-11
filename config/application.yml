@@ -1,1 +1,5 @@
 debug: true
+db_path: ./config/alyssum.db
+width: 600
+height: 450
+style_template: ./config/style.css

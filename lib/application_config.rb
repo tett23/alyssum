@@ -18,4 +18,12 @@ class ApplicationConfig
 
     @config = config.symbolize_keys
   end
+
+  def self.[](k)
+    self.instance.config[k]
+  end
+
+  def self.[]=(k, v)
+    self.instance.config[k] = v
+  end
 end
