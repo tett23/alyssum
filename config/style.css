@@ -28,6 +28,11 @@ QWidget:focus {
   /*letter-spacing: 0.1em;*/
 }
 
+#sidebar {
+  min-width: 100px;
+  max-width: 150px;
+}
+
 QMenuBar {
   background-color: #555;
 }

@@ -3,6 +3,8 @@ class FileView < Qt::TreeWidget
 
   def initialize
     super
+    setObjectName("sidebar")
+
     context_menu = Qt::Menu.new(self)
     self.setContextMenuPolicy(Qt::ActionsContextMenu)
     rename_action = Qt::Action.new('rename', context_menu)
