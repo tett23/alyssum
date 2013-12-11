@@ -52,13 +52,15 @@ class TextEdit < Qt::Object
     @line_numbers = LineNumbers.new
     @char_counter = CharCounter.new
     @annotation = Annotation.new
+    @description = Description.new
     Qt::Object.connect(@textarea, SIGNAL('count_characters(int)'), @char_counter, SLOT('update_count(int)'))
     @textarea.emit @textarea.count_characters(0)
   end
 
   def layout
     layout = Qt::VBoxLayout.new do |layout|
-      annotation = Qt::HBoxLayout.new do |l|
+      annotation = Qt::VBoxLayout.new do |l|
+        l.add_widget(@description)
         l.add_widget(@annotation)
       end
 
@@ -93,5 +95,6 @@ class TextEdit < Qt::Object
   def view_file(body_id)
     @textarea.open_file(body_id)
     @annotation.open_file(body_id)
+    @description.open_file(body_id)
   end
 end
