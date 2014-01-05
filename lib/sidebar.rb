@@ -67,12 +67,7 @@ class Sidebar < Qt::Object
     item.setText(1, body.id.to_s)
     item.setFlags(Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsEnabled | Qt::ItemIsDragEnabled | Qt::ItemIsEditable)
     @file_view.addTopLevelItem(item)
+
+    item
   end
-
-  def new_file
-    body = Body.create(title: 'new file')
-    add_item(body)
-  end
-
-
 end

@@ -31,15 +31,20 @@ QWidget:focus {
 #sidebar {
   min-width: 100px;
   max-width: 150px;
+  font-size: 11px;
 }
 
 #description {
   background-color: #666;
+  min-width: 200px;
+  max-width: 300px;
 }
 
 #annotation {
   background-color: #666;
   border-top: 1px #000 solid;
+  min-width: 200px;
+  max-width: 300px;
 }
 
 QMenuBar {

@@ -84,6 +84,9 @@ class MainWindow < Qt::MainWindow
     connect(quit, SIGNAL('triggered()'), Qt::Application.instance, SLOT('quit()'))
     connect(new_file, SIGNAL('triggered()'), @windows.first.sidebar, SLOT('new_file()'))
   end
+
+  def closeEvent(e)
+  end
 end
 
 app = Qt::Application.new(ARGV)

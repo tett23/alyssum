@@ -97,4 +97,7 @@ class TextEdit < Qt::Object
     @annotation.open_file(body_id)
     @description.open_file(body_id)
   end
+
+  def update(body_id)
+  end
 end
