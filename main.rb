@@ -12,6 +12,8 @@ require './lib/text_edit'
 require './lib/sidebar'
 require './lib/annotation'
 require './lib/description'
+require './lib/application_menu'
+require './lib/new_project_dialog'
 require './models/project'
 require './models/body'
 require './models/character_flagment'
@@ -54,6 +56,8 @@ class Window < Qt::Widget
 end
 
 class MainWindow < Qt::MainWindow
+  include ApplicationMenu
+
   slots :create_file
 
   def initialize
@@ -69,20 +73,10 @@ class MainWindow < Qt::MainWindow
 
     self.window_title = 'alyssum'
     resize(ApplicationConfig[:width], ApplicationConfig[:height])
-    set_menu()
+    move(geometry.center())
+    bootup_menu()
 
     setCentralWidget(@windows.first)
-  end
-
-  def set_menu
-    quit = Qt::Action.new '&Quit', self
-    new_file = Qt::Action.new 'New File', self
-    file = menuBar().addMenu '&File'
-    file.addAction quit
-    file.addAction new_file
-
-    connect(quit, SIGNAL('triggered()'), Qt::Application.instance, SLOT('quit()'))
-    connect(new_file, SIGNAL('triggered()'), @windows.first.sidebar, SLOT('new_file()'))
   end
 
   def closeEvent(e)
