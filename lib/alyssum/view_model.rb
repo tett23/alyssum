@@ -3,6 +3,8 @@
 module Alyssum
   class ViewModel < Qt::Object
     def initialize
+      super
+
       @views = {}
     end
 

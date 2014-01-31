@@ -1,6 +1,8 @@
 # coding: utf-8
 
 class TextEditView < Qt::TextEdit
+  signals 'count_characters(int)'
+
   def initialize
     super
     setObjectName('TextEdit')
@@ -12,5 +14,11 @@ class TextEditView < Qt::TextEdit
     end
 
     l
+  end
+
+  def keyPressEvent(e)
+    super(e)
+
+    emit count_characters(self.plainText.size)
   end
 end
