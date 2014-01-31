@@ -20,9 +20,11 @@ class App
   end
 
   def widgets
-    @view_models.reject do |k, _|
+    items = @view_models.reject do |k, _|
       k == :MainWindow
     end
+
+    items
   end
 
   def [](key)

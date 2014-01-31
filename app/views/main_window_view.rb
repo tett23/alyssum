@@ -7,7 +7,7 @@ class MainWindowView < Qt::Widget
   end
 
   def layout(widgets)
-    l = Qt::HBoxLayout.new do |l|
+    l = Qt::VBoxLayout.new do |l|
       l.add_layout widgets[:TextEdit].layout
     end
 
