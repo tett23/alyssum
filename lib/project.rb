@@ -1,3 +1,4 @@
+=begin
 class Project
   attr_reader :model, :dir
 
@@ -8,3 +9,4 @@ class Project
     @model = Qt::FileSystemModel.new
   end
 end
+=end

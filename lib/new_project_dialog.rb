@@ -33,19 +33,14 @@ class NewPorjectDialog < Qt::Dialog
   end
 
   def center
-    main_window = Qt::Application.topLevelWidgets().find do |w|
-      w.class == MainWindow
-    end
-    move(main_window.geometry.center)
+    move(Qt::Application.main_window.geometry.center)
   end
 
   def accepted()
-    #project = Project.create(@project_name.text)
-    #project.id
-    main_window = Qt::Application.topLevelWidgets().find do |w|
-      w.class == MainWindow
-    end
+    project = Project.create(name: @project_name.text)
+    Qt::Application.main_window.emit_all_children(:sidebar, :project_added, project.id)
 
+    close()
   end
 
   def rejected()

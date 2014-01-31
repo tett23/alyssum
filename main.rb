@@ -81,6 +81,25 @@ class MainWindow < Qt::MainWindow
 
   def closeEvent(e)
   end
+
+  def emit_all_children(item_name, signal_name, *args)
+    item_name = "@#{item_name}"
+    @windows.each do |w|
+      raise 'undefined item: '+item_name.to_s unless w.instance_variable_defined?(item_name)
+
+      w.instance_variable_get(item_name).instance_eval do
+        emit(send(signal_name, *args))
+      end
+    end
+  end
+end
+
+class Qt::Application
+  def self.main_window
+    Qt::Application.topLevelWidgets().find do |w|
+      w.class == MainWindow
+    end
+  end
 end
 
 app = Qt::Application.new(ARGV)
