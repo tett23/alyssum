@@ -28,13 +28,13 @@ module.exports = (grunt) ->
         ext: '.css'
     watch:
       coffee:
-        files: ['src/*.coffee']
+        files: ['src/**/*.coffee']
         tasks: ['coffee:product']
       jade:
-        files: ['src/*.jade']
+        files: ['src/**/*.jade']
         tasks: ['jade:product']
       stylus:
-        files: ['src/*.styl']
+        files: ['src/**/*.styl']
         tasks: ['stylus:product']
     alyssum:
       bin: '~/tmp/atom-shell/out/Debug/atom'
