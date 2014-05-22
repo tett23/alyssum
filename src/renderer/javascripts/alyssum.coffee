@@ -1,3 +1,5 @@
 ipc = require 'ipc'
 ipc.on 'open-command-panel', (args) ->
-  console.log('open command panel')
+  commandPanel = document.getElementById('command-panel')
+  commandPanel.toggleDisplay()
+  commandPanel.$.search.impl.focus()
