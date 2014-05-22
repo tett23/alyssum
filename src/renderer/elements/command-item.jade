@@ -1,0 +1,10 @@
+link(rel='import', href='../bower_components/polymer/polymer.html')
+
+polymer-element(name='x-command-item', attributes='command description')
+  template
+    #body
+      #name {{command}}
+      #description {{description}}
+  style
+    :stylus
+  script(src='javascripts/command-item.js')

@@ -2,6 +2,11 @@ doctype html
 html(lang='ja')
   head
     title Alyssum
+    script(src='bower_components/platform/platform.js')
     script(src='javascripts/alyssum.js')
+    link(rel='stylesheet', href='stylesheets/application.css')
+    link(rel='import', href='elements/command-item.html')
+    link(rel='import', href='elements/command-list.html')
+    link(rel='import', href='elements/command-panel.html')
   body
-    h1 foo
+    x-command-panel

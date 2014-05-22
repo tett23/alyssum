@@ -36,6 +36,12 @@ class ApplicationMenu
             click: =>
               @window.toggleDevTools()
           }
+          {
+            label: 'reload'
+            accelerator: 'Control+R'
+            click: =>
+              @window.reload()
+          }
         ]
       }
     ]

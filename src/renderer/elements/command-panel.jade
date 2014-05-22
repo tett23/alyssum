@@ -1,0 +1,9 @@
+link(rel='import', href='../bower_components/polymer/polymer.html')
+
+polymer-element(name='x-command-panel')
+  template
+    input#search(type="text", on-keyup="{{search}}")
+    x-command-list#commands
+  style
+    :stylus
+  script(src='javascripts/command-panel.js')

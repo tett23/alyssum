@@ -1,0 +1,1 @@
+Polymer 'x-command-item', {}
