@@ -4,6 +4,7 @@ BrowserWindow = require 'browser-window'
 
 ApplicationMenu = require './application-menu'
 ApplicationCommand = require './application-command'
+FileItem = require '../common/file-item'
 Commands = require '../common/commands'
 Command = require '../common/command'
 
@@ -25,7 +26,11 @@ app.on 'ready', ->
     mainWindow = null
 
 ipc.on 'execute-command', (event, args) ->
+  console.log event
   event.returnValue = Commands.execute(args)
 
 ipc.on 'search-command', (event, args) ->
   event.returnValue = Commands.search(args)
+
+ipc.on 'get-file-tree', (event, args) ->
+  event.returnValue = Commands.execute('reload-file-tree')

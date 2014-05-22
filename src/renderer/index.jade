@@ -5,8 +5,10 @@ html(lang='ja')
     script(src='bower_components/platform/platform.js')
     script(src='javascripts/alyssum.js')
     link(rel='stylesheet', href='stylesheets/application.css')
+    link(rel='import', href='elements/file-tree.html')
     link(rel='import', href='elements/command-item.html')
     link(rel='import', href='elements/command-list.html')
     link(rel='import', href='elements/command-panel.html')
   body
+    x-file-tree#file-tree
     x-command-panel#command-panel
