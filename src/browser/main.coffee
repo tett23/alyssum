@@ -26,6 +26,7 @@ app.on 'ready', ->
   mainWindow.webContents.on 'did-finish-load', ->
     mainWindow.webContents.send('create-component', element: 'file-tree', id: 'file-tree')
     mainWindow.webContents.send('create-component', element: 'command-panel', id: 'command-panel')
+    mainWindow.webContents.send('create-component', element: 'buffers-panel', id: 'buffers')
 
   mainWindow.on 'closed', ->
     mainWindow = null

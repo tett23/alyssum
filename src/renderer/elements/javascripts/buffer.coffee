@@ -1,0 +1,2 @@
+Polymer 'x-buffer',
+  ready: ->
