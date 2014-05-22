@@ -1,8 +1,8 @@
 app = require 'app'
 BrowserWindow = require 'browser-window'
 
-ApplicationMenu = require './application-menu'
-Commands = require './commands'
+ApplicationMenu = require './browser/application-menu'
+Commands = require './common/commands'
 
 require('crash-reporter').start()
 
