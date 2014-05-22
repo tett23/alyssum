@@ -5,5 +5,5 @@ Polymer 'x-buffers-panel',
     @removeBuffer = (buffer) =>
       @.$.commands.innerHTML = ''
 
-    buffer = document.createElement('x-buffer')
+    buffer = document.createElement('x-text-buffer')
     @addBuffer(buffer)
