@@ -25,6 +25,7 @@ app.on 'ready', ->
     mainWindow = null
 
 ipc.on 'execute-command', (event, args) ->
+  event.returnValue = Commands.execute(args)
 
 ipc.on 'search-command', (event, args) ->
   event.returnValue = Commands.search(args)

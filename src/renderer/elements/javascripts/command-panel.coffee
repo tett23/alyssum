@@ -9,8 +9,12 @@ Polymer 'x-command-panel',
     @.toggleDisplay = =>
       if @.isShowing() then @.hide() else @.show()
 
-  search: ->
-    query = @.$.search.value
-    commands = ipc.sendSync 'search-command', query
-    @.$.commands.clear()
-    @.$.commands.setItems(commands)
+  keyUpSearch: (event) ->
+    if event.keyIdentifier == 'Enter'
+      ret = ipc.sendSync 'execute-command', @.$.search.value
+      console.log(ret)
+    else
+      query = @.$.search.value
+      commands = ipc.sendSync 'search-command', query
+      @.$.commands.clear()
+      @.$.commands.setItems(commands)

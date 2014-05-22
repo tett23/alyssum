@@ -5,7 +5,6 @@ Polymer 'x-command-list',
 
       for command in commands
         el = document.createElement('x-command-item')
-        console.log(command)
         el.setAttribute('command', command.name)
         el.setAttribute('description', command.options.description)
         @.$.commands.appendChild(el)
