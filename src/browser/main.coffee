@@ -17,6 +17,7 @@ app.on 'window-all-closed', ->
 
 app.on 'ready', ->
   mainWindow = new BrowserWindow {width: 1280, height: 720}
+  mainWindow.components = []
 
   mainWindow.loadUrl('file://' + __dirname + '/../renderer/index.html')
   mainWindow.setMenu(new ApplicationMenu(mainWindow).menu)
@@ -37,3 +38,6 @@ ipc.on 'search-command', (event, args) ->
 
 ipc.on 'get-file-tree', (event, args) ->
   event.returnValue = Commands.execute('get-file-tree')
+
+ipc.on 'created-element', (event, params) ->
+  mainWindow.components.push(params)

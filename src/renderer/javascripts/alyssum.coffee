@@ -12,3 +12,7 @@ ipc.on 'create-component', (params) ->
   el.id = params.id
 
   document.body.appendChild(el)
+
+  ipc.send 'created-component',
+    element: el,
+    params: params
