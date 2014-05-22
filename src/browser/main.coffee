@@ -22,6 +22,10 @@ app.on 'ready', ->
   mainWindow.setMenu(new ApplicationMenu(mainWindow).menu)
   ApplicationCommand.setup()
 
+  mainWindow.webContents.on 'did-finish-load', ->
+    mainWindow.webContents.send('create-component', element: 'file-tree', id: 'file-tree')
+    mainWindow.webContents.send('create-component', element: 'command-panel', id: 'command-panel')
+
   mainWindow.on 'closed', ->
     mainWindow = null
 
