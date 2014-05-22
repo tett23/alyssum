@@ -12,7 +12,7 @@ app.on 'window-all-closed', ->
   app.quit() if process.platform != 'darwin'
 
 app.on 'ready', ->
-  mainWindow = new BrowserWindow {width: 800, height: 600}
+  mainWindow = new BrowserWindow {width: 1280, height: 720}
 
   mainWindow.loadUrl('file://' + __dirname + '/../renderer/index.html')
   mainWindow.setMenu(new ApplicationMenu(mainWindow).menu)
