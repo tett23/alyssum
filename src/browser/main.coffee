@@ -26,11 +26,10 @@ app.on 'ready', ->
     mainWindow = null
 
 ipc.on 'execute-command', (event, args) ->
-  console.log event
   event.returnValue = Commands.execute(args)
 
 ipc.on 'search-command', (event, args) ->
   event.returnValue = Commands.search(args)
 
 ipc.on 'get-file-tree', (event, args) ->
-  event.returnValue = Commands.execute('reload-file-tree')
+  event.returnValue = Commands.execute('get-file-tree')
