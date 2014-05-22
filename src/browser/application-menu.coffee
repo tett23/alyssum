@@ -2,7 +2,7 @@ app = require 'app'
 ipc = require 'ipc'
 Menu = require 'menu'
 MenuItem = require 'menu-item'
-Commands = require './common/commands'
+Commands = require '../common/commands'
 
 class ApplicationMenu
   constructor: (@window) ->

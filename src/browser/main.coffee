@@ -1,8 +1,8 @@
 app = require 'app'
 BrowserWindow = require 'browser-window'
 
-ApplicationMenu = require './browser/application-menu'
-Commands = require './common/commands'
+ApplicationMenu = require './application-menu'
+Commands = require '../common/commands'
 
 require('crash-reporter').start()
 
@@ -14,7 +14,7 @@ app.on 'window-all-closed', ->
 app.on 'ready', ->
   mainWindow = new BrowserWindow {width: 800, height: 600}
 
-  mainWindow.loadUrl('file://' + __dirname + '/browser/index.html')
+  mainWindow.loadUrl('file://' + __dirname + '/../renderer/index.html')
   mainWindow.setMenu(new ApplicationMenu(mainWindow).menu)
 
   mainWindow.on 'closed', ->
