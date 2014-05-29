@@ -38,10 +38,15 @@ module.exports = (grunt) ->
         tasks: ['stylus:product']
     alyssum:
       bin: '~/tmp/atom-shell/out/Debug/atom'
+    'download-atom-shell':
+      version: '0.12.7'
+      outputDir: './atom-shell'
+      rebuild: false
 
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-jade'
   grunt.loadNpmTasks 'grunt-contrib-stylus'
+  grunt.loadNpmTasks 'grunt-download-atom-shell'
   grunt.loadNpmTasks 'grunt-contrib-watch'
 
   grunt.registerTask 'default', ['coffee', 'jade', 'stylus']
