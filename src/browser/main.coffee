@@ -20,7 +20,8 @@ app.on 'ready', ->
   mainWindow.components = []
 
   mainWindow.loadUrl('file://' + __dirname + '/../renderer/index.html')
-  mainWindow.setMenu(new ApplicationMenu(mainWindow).menu)
+  menu = new ApplicationMenu(mainWindow)
+  menu.set()
   ApplicationCommand.setup()
 
   mainWindow.webContents.on 'did-finish-load', ->

@@ -8,6 +8,12 @@ class ApplicationMenu
   constructor: (@window) ->
     @menu = Menu.buildFromTemplate(@template())
 
+  set: ->
+    if process.platform != 'darwin'
+      @window.setMenu(@menu)
+    else
+      Menu.setApplicationMenu(@menu)
+
   template: ->
     [
       {
