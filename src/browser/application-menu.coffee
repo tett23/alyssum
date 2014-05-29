@@ -6,6 +6,10 @@ Commands = require '../common/commands'
 
 class ApplicationMenu
   constructor: (@window) ->
+    if process.platform is 'darwin'
+      @metaKey = 'Command'
+    else
+      @metaKey = 'Control'
     @menu = Menu.buildFromTemplate(@template())
 
   set: ->
@@ -21,13 +25,13 @@ class ApplicationMenu
         submenu: [
           {
             label: 'open command panel'
-            accelerator: 'Control+P'
+            accelerator: @metaKey+'+P'
             click: (_, webContents)->
               webContents.send('open-command-panel', null)
           }
           {
             label: 'quit'
-            accelerator: 'Control+Q'
+            accelerator: @metaKey+'+Q'
             click: =>
               app.quit()
           }
@@ -38,13 +42,13 @@ class ApplicationMenu
         submenu: [
           {
             label: 'dev tool'
-            accelerator: 'Control+Shift+C'
+            accelerator: @metaKey+'+Shift+C'
             click: =>
               @window.toggleDevTools()
           }
           {
             label: 'reload'
-            accelerator: 'Control+R'
+            accelerator: @metaKey+'+R'
             click: =>
               @window.reload()
           }
