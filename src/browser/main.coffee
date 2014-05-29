@@ -17,7 +17,7 @@ app.on 'window-all-closed', ->
 
 app.on 'ready', ->
   mainWindow = new BrowserWindow {width: 1280, height: 720}
-  mainWindow.components = []
+  mainWindow.components = {}
 
   mainWindow.loadUrl('file://' + __dirname + '/../renderer/index.html')
   menu = new ApplicationMenu(mainWindow)
@@ -41,5 +41,14 @@ ipc.on 'search-command', (event, args) ->
 ipc.on 'get-file-tree', (event, args) ->
   event.returnValue = Commands.execute('get-file-tree')
 
-ipc.on 'created-element', (event, params) ->
-  mainWindow.components.push(params)
+ipc.on 'get-file', (event, args) ->
+  event.returnValue = new FileItem('foo')
+
+ipc.on 'get-current-buffer', (event, args) ->
+  buffers = mainWindow.components.buffers
+  console.log buffers.currentBuffer.impl
+
+  event.returnValue = buffers?.currentBuffer
+
+ipc.on 'created-component', (event, params) ->
+  mainWindow.components[params.id] = params.element if params?.id?

@@ -1,8 +1,8 @@
 link(rel='import', href='../bower_components/polymer/polymer.html')
 
-polymer-element(name='x-file-item', attributes='filename')
+polymer-element(name='x-file-item', extends='x-element', attributes='filename')
   template
-    #body
+    #body(on-click="{{openFile}}")
       #name {{filename}}
   style
     :stylus

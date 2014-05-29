@@ -1,2 +1,3 @@
 Polymer 'x-buffer',
-  ready: ->
+  created: ->
+    @open = (fileItem) =>

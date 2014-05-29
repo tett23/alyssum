@@ -1,3 +1,8 @@
 Polymer 'x-text-buffer',
-  ready: ->
+  created: ->
     @super()
+
+    @open = (fileItem) =>
+      @super()
+      @.$.body.value = fileItem.body
+
