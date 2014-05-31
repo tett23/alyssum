@@ -22,6 +22,6 @@ Polymer 'x-file-tree',
        icon: null
      onClick: =>
        file = new FileItem('foo', {type: 'text', body: 'aa'})
-       @.$.items.appendChild(file)
+       #@.$.items.appendChild(file)
     )
-    @.$['menu-buttons'].appendChild(@fileAdd)
+    #@.$['menu-buttons'].appendChild(@fileAdd)
