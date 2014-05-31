@@ -8,7 +8,7 @@ module.exports = (grunt) ->
         expand: true
         cwd: 'src'
         src: '**/*.coffee'
-        dest: 'build/'
+        dest: '/home/tett23/share/alyssum/build/'
         ext: '.js'
     jade:
       product:
@@ -17,14 +17,14 @@ module.exports = (grunt) ->
         expand: true
         cwd: 'src'
         src: '**/*.jade'
-        dest: 'build/'
+        dest: '/home/tett23/share/alyssum/build/'
         ext: '.html'
     stylus:
       product:
         expand: true
         cwd: 'src'
         src: '**/*.styl'
-        dest: 'build/'
+        dest: '/home/tett23/share/alyssum/build/'
         ext: '.css'
     watch:
       coffee:
