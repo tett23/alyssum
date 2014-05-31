@@ -8,7 +8,7 @@ class FileItem
     @toHTML = ->
       el = alyssum.createComponent('file-item',
         attributes:
-          filename: @name
+          filename: @filename
           type: @type
           body: @body
       )

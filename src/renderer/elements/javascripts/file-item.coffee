@@ -10,5 +10,4 @@ Polymer 'x-file-item',
   openFile: ->
     file = ipc.sendSync('get-file', @filename)
     buffer = alyssum.buffers.currentBuffer
-    console.log buffer
     buffer.open(file)
