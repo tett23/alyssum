@@ -13,7 +13,6 @@ class Alyssum
     @fileTree = @createComponent(element: 'file-tree', id: 'file-tree')
     @commandPanel = @createComponent(element: 'command-panel', id: 'command-panel')
     @buffers = @createComponent(element: 'buffers-panel', id: 'buffers')
-    console.log @fileTree, @commandPanel, @buffers
     document.body.appendChild(@fileTree) if @fileTree?
     document.body.appendChild(@commandPanel) if @commandPanel?
     document.body.appendChild(@buffers) if @buffers?

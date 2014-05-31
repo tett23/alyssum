@@ -1,5 +1,4 @@
-require 'ipc'
-require './javascripts/alyssum'
+alyssum = require './javascripts/alyssum'
 
 Polymer 'x-file-item',
   ready: ->
