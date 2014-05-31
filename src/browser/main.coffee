@@ -33,8 +33,9 @@ ipc.on 'execute-command', (event, args) ->
 ipc.on 'search-command', (event, args) ->
   event.returnValue = Commands.search(args)
 
-ipc.on 'get-file-tree', (event, args) ->
-  event.returnValue = Commands.execute('get-file-tree')
+ipc.on 'get-file', (event, filename) ->
+  event.returnValue = new FileItem('foo', {})
 
-ipc.on 'get-file', (event, args) ->
-  event.returnValue = new FileItem('foo')
+ipc.on 'create-file', (event, params) ->
+  file = new FileItem(params.filename, params)
+  event.returnValue = file

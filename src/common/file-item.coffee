@@ -1,5 +1,17 @@
+alyssum = require('../renderer/javascripts/alyssum')
+
 class FileItem
-  constructor: (@name) ->
-    @body = 'foo bar'
+  constructor: (@filename, params) ->
+    @type = params?.attributes?.type || 'text'
+    @body = params?.attributes?.body || 'foo bar'
+
+    @toHTML = ->
+      el = alyssum.createComponent('file-item',
+        attributes:
+          filename: @name
+          type: @type
+          body: @body
+      )
+      el
 
 module.exports = FileItem

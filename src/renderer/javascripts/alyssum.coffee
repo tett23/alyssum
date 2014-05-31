@@ -9,26 +9,33 @@ class Alyssum
       @commandPanel = null
       @buffers = null
 
-  assignDOM: ->
-    @fileTree = @createComponent(element: 'file-tree', id: 'file-tree')
-    @commandPanel = @createComponent(element: 'command-panel', id: 'command-panel')
-    @buffers = @createComponent(element: 'buffers-panel', id: 'buffers')
-    document.body.appendChild(@fileTree) if @fileTree?
-    document.body.appendChild(@commandPanel) if @commandPanel?
-    document.body.appendChild(@buffers) if @buffers?
-
-  createComponent: (params) ->
+  createComponent: (elementName, params) ->
     prefix = params.prefix || 'x'
-    el = document.createElement(prefix+'-'+params.element)
-    el.id = params.id
+    el = document.createElement(prefix+'-'+elementName)
+    el.id = params.id unless params.id?
+    el.onClick = params.onClick || ->
+
+    for key, value of params.attributes
+      el.setAttribute(key, value)
 
     el
 
   addBuffer: ->
+  appendNewFile: (filename, fileParams) ->
+    ipc.sendSync('create-file', filename: filename, params: fileParams)
 
   openCommandPanel: (args) ->
     if @commandPanel?
       @commandPanel.toggleDisplay()
       @commandPanel.$.search.impl.focus()
+
+  assignDOM: ->
+   @fileTree = @createComponent('file-tree', id: 'file-tree')
+   @commandPanel = @createComponent('command-panel', id: 'command-panel')
+   @buffers = @createComponent('buffers-panel', id: 'buffers')
+   document.body.appendChild(@fileTree) if @fileTree?
+   document.body.appendChild(@commandPanel) if @commandPanel?
+   document.body.appendChild(@buffers) if @buffers?
+
 
 module.exports = new Alyssum().instance

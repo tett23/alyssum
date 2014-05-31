@@ -1,13 +1,27 @@
-ipc = require 'ipc'
+alyssum = require './javascripts/alyssum'
+FileItem = require '../common/file-item'
+FileTree = require '../common/file-tree'
+
 Polymer 'x-file-tree',
   ready: ->
     @reload = () =>
-      fileTree = (require('ipc')).sendSync 'get-file-tree'
+      fileTree = FileTree.list
       for file in fileTree
-        el = document.createElement('x-file-item')
-        el.setAttribute('filename', file.name)
-        @.$.items.appendChild(el)
+        @.$.items.appendChild(file.toHTML())
+
     @clear = () =>
-      @.$.items.innerHTML = ''
+     @.$.items.innerHTML = ''
 
     @reload()
+
+    @fileAdd = alyssum.createComponent('button',
+     id: 'file-add'
+     element: 'button'
+     attributes:
+       text: 'add file'
+       icon: null
+     onClick: =>
+       file = new FileItem('foo', {type: 'text', body: 'aa'})
+       @.$.items.appendChild(file)
+    )
+    @.$['menu-buttons'].appendChild(@fileAdd)

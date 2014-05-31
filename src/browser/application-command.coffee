@@ -3,6 +3,7 @@ ipc = require 'ipc'
 Command = require '../common/command'
 Commands = require '../common/commands'
 FileTree = require '../common/file-tree'
+FileItem = require '../common/file-item'
 
 class ApplicationCommand
   @setup: () ->
@@ -10,7 +11,7 @@ class ApplicationCommand
       app.quit()
     , {description: 'quit application'})
     Commands.register new Command('get-file-tree', () ->
-      FileTree.list()
+      return FileTree.search()
     , {description: 'get file tree'})
 
 module.exports = ApplicationCommand

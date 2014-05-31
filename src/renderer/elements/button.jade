@@ -1,0 +1,10 @@
+link(rel='import', href='../bower_components/polymer/polymer.html')
+
+polymer-element(name='x-button', attributes='text icon')
+  template
+    button#body(on-click="{{onClick}}")
+      p#text {{text}}
+      span#icon(class="{{icon}}")
+  style
+    :stylus
+  script(src='javascripts/button.js')
