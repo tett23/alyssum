@@ -24,11 +24,6 @@ app.on 'ready', ->
   menu.set()
   ApplicationCommand.setup()
 
-  mainWindow.webContents.on 'did-finish-load', ->
-    mainWindow.webContents.send('create-component', element: 'file-tree', id: 'file-tree')
-    mainWindow.webContents.send('create-component', element: 'command-panel', id: 'command-panel')
-    mainWindow.webContents.send('create-component', element: 'buffers-panel', id: 'buffers')
-
   mainWindow.on 'closed', ->
     mainWindow = null
 
@@ -43,12 +38,3 @@ ipc.on 'get-file-tree', (event, args) ->
 
 ipc.on 'get-file', (event, args) ->
   event.returnValue = new FileItem('foo')
-
-ipc.on 'get-current-buffer', (event, args) ->
-  buffers = mainWindow.components.buffers
-  console.log buffers.currentBuffer.impl
-
-  event.returnValue = buffers?.currentBuffer
-
-ipc.on 'created-component', (event, params) ->
-  mainWindow.components[params.id] = params.element if params?.id?

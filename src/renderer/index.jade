@@ -4,10 +4,16 @@ html(lang='ja')
     title Alyssum
     script(src='bower_components/platform/platform.js')
     script(src='javascripts/alyssum.js')
+    script(src='javascripts/interface.js')
     link(rel='stylesheet', href='stylesheets/application.css')
     link(rel='import', href='elements/file-tree.html')
     link(rel='import', href='elements/buffers-panel.html')
     link(rel='import', href='elements/command-item.html')
     link(rel='import', href='elements/command-list.html')
     link(rel='import', href='elements/command-panel.html')
+    script
+      :coffeescript
+        window.onload = ->
+          alyssum = require('./javascripts/alyssum')
+          alyssum.assignDOM()
   body

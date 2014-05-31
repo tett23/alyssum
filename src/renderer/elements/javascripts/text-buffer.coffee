@@ -3,6 +3,5 @@ Polymer 'x-text-buffer',
     @super()
 
     @open = (fileItem) =>
-      @super()
       @.$.body.value = fileItem.body
 
