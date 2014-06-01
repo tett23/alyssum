@@ -8,6 +8,5 @@ Polymer 'x-file-item',
     #  @items[item.filename] = item
 
   openFile: ->
-    file = ipc.sendSync('get-file', @filename)
     buffer = alyssum.buffers.currentBuffer
-    buffer.open(file)
+    buffer.open({body: @attributes.getNamedItem('body').nodeValue})

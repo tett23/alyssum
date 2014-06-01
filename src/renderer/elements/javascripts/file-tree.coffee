@@ -12,8 +12,6 @@ Polymer 'x-file-tree',
     @clear = () =>
      @.$.items.innerHTML = ''
 
-    @reload()
-
     @fileAdd = alyssum.createComponent('button',
      id: 'file-add'
      element: 'button'
@@ -21,7 +19,15 @@ Polymer 'x-file-tree',
        text: 'add file'
        icon: null
      onClick: =>
-       file = new FileItem('foo', {type: 'text', body: 'aa'})
-       #@.$.items.appendChild(file)
+       file = new FileItem('foo',
+         attributes:
+           type: 'text'
+           body: 'aa'
+       )
+       file.onClick = ->
+       @.$.items.appendChild(file.toHTML())
     )
-    #@.$['menu-buttons'].appendChild(@fileAdd)
+
+    @reload()
+
+    @.$.buttons.appendChild(@fileAdd)
